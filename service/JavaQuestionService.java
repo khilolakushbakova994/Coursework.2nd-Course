@@ -3,36 +3,45 @@ package service;
 import model.Question;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 
-public class JavaQuestionService implements QuestionService{
+public class JavaQuestionService implements QuestionService {
     Set<Question> questions = new HashSet<>();
+
     @Override
     public Question add(String question, String answer) {
-        return null;
+        Question questionAndAnswer = new Question(question, answer);
+        questions.add(questionAndAnswer);
+
+        return questionAndAnswer ;
     }
 
     @Override
-    public Question add(Question question) {
-        return null;
+    public Question addOnlyQuestion(Question question) {
+        questions.add(question);
+        return question;
     }
 
     @Override
     public Question remove(Question question) {
-        return null;
+        if (questions.contains(question)) {
+            questions.remove(question);
+
+        }
+        return question;
     }
 
     @Override
     public Collection<Question> getAll() {
-        return null;
+        return List.copyOf(questions);
     }
 
     @Override
     public Question getRandomQuestion() {
-        return null;
+        Random randomQuestion = new Random();
+        int q = randomQuestion.nextInt(questions.size());
+        return new  ArrayList<>(questions).get(q);
     }
 }

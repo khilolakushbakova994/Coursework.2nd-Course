@@ -16,21 +16,23 @@ public class JavaQuestionController {
     public JavaQuestionController(QuestionService service) {
         this.service = service;
     }
+
+
     @GetMapping ("/add")
     Question addQuestion (String question, String answer){
-        return null;
+        return service.add(question, answer);
     }
 
 
     @GetMapping ("/remove")
-    Question removeQuestion (String question, String answer){
-        return null;
+    Question removeQuestion (Question question){
+        return service.remove(question);
     }
 
 
     @GetMapping
     Collection <Question> getQuestions () {
-        return null;
+        return service.getAll();
     }
 
 
